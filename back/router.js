@@ -3,7 +3,7 @@ import controller from './controller.js';
 
 const router = new Router();
 
-router.get('/users');
+router.get('/users', controller.showUsers);
 router.get('/user:id');
 router.post('/reg', controller.registration);
 router.post('/log', controller.login);

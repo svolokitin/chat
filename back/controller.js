@@ -1,6 +1,15 @@
 import Users from './modules/users.js';
 
 class Controller {
+    async showUsers (req, res) {
+        try {
+            const candidate = await Users.findAll();
+            return res.json(candidate);
+        }
+        catch (err) {
+            return err.message;
+        }
+    }
     async registration (req, res) {
         try {
             const {nickname, login, email, password} = req.body;
