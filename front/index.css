@@ -10,7 +10,6 @@ body {
 
 .container {
     display: flex;
-    
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #fff;
@@ -18,13 +17,26 @@ body {
 }
 
 .chat__container {
-    width: 350px;
+    height: 450px;
+    width: 500px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #fff;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+}
+
+.topbar {
+    text-align: center;
+    padding-top: 5px;
+    border: 1px solid #ccc
+}
+
+.topbar a {
+    float: right;
+    margin: 0;
+    padding-right: 5px;
 }
 
 .chat__window {
@@ -66,14 +78,14 @@ body {
 }
 
 .sidebar {
-    width: 200px;
-    padding: 10px;
+    width: 150px;
+    padding: 6px;
     background-color: #a9a8a8;
 }
 
 .sidebar h2 {
     font-size: 20px;
-    margin-bottom: 10px;
+    
 }
 
 .sidebar ul {
