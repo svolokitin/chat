@@ -10,7 +10,7 @@ body {
 
 .container {
     display: flex;
-    width: 600px;
+    
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #fff;
