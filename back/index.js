@@ -1,9 +1,15 @@
 import express from 'express';
+import cors from 'cors';
 import connectDB from './dataBase/connect.js';
 import router from './router.js';
+import http from 'http';
+import { setupSocket } from './socket.js'; 
 
 const app = express();
-const PORT = 7777;
+const server = http.createServer(app);
+const PORT = 7777; 
+
+const io = setupSocket(server);
 
 app.use(express.json());
 app.use('/users', router);
@@ -11,7 +17,7 @@ app.use('/users', router);
 async function startServer() {
     try {
         connectDB();
-        app.listen(PORT, () => console.log('Server working on port: ' + PORT));
+        server.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT}`));
     }
     catch (err) {
         return err.message;
