@@ -3,16 +3,38 @@ import cors from 'cors';
 import connectDB from './dataBase/connect.js';
 import router from './router.js';
 import http from 'http';
-import { setupSocket } from './socket.js'; 
+import { Server } from 'socket.io';
 
 const app = express();
 const server = http.createServer(app);
-const PORT = 7777; 
+const io = new Server(server, {
+    cors: {
+      origin: '*',
+      methods: ['GET', 'POST']
+    }
+});
 
-const io = setupSocket(server);
+const PORT = 3000; 
 
-app.use(express.json());
-app.use('/users', router);
+/*app.use(express.json());
+app.use('/users', router);*/
+
+io.on('connection', (socket) => {
+    console.log('A user connected:', socket.id);
+
+    // Обработка получения сообщения от клиента
+    socket.on('chat message', (msg) => {
+        console.log('Message from client:', msg);
+
+        // Отправка сообщения обратно всем подключенным клиентам
+        io.emit('chat message', msg);
+    });
+
+    // Обработка отключения пользователя
+    socket.on('disconnect', () => {
+        console.log('User disconnected:', socket.id);
+    });
+});
 
 async function startServer() {
     try {
@@ -25,3 +47,6 @@ async function startServer() {
 }
 
 startServer();
+
+
+export default io;

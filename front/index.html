@@ -4,6 +4,7 @@
         <title>chat</title>
         <link type="text/css" rel="stylesheet" href="./index.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"></script>
         <meta charset="UTF-8">
     </head>
     <body>
@@ -28,6 +29,21 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            const socket = io('http://localhost:3000');
+
+            // Обработка сообщений
+            socket.on('message', (message) => {
+                document.getElementById('chat__window').innerText = `Response from server ${message}`;
+            });
+
+            // Прослушка кнопки
+            document.getElementById('send__button').onclick = () => {
+                const message = document.getElementById('chat__message').value;
+                socket.send(message);
+            };
+        </script>
     </body>
 </html>
 
