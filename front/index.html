@@ -30,20 +30,7 @@
             </div>
         </div>
 
-        <script>
-            const socket = io('http://localhost:3000');
-
-            // Обработка сообщений
-            socket.on('message', (message) => {
-                document.getElementById('chat__window').innerText = `Response from server ${message}`;
-            });
-
-            // Прослушка кнопки
-            document.getElementById('send__button').onclick = () => {
-                const message = document.getElementById('chat__message').value;
-                socket.send(message);
-            };
-        </script>
+        <script type="module" src="./index.js"></script>
     </body>
 </html>
 
