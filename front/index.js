@@ -4,7 +4,7 @@ const socket = io('http://localhost:3000');
 
 // Обработка сообщений
 socket.on('message', (message) => {
-    document.getElementById('chat__window').innerText = `Response from server ${message}`;
+    document.getElementById('chat__window').innerText = `- ${socket.id} ${message}`;
 });
 
 // Прослушка кнопки
