@@ -4,12 +4,16 @@ const socket = io('http://localhost:3000');
 
 // Обработка сообщений
 socket.on('message', (message) => {
-    document.getElementById('chat__window').innerText = `Response from server ${message}`;
+    document.getElementById('chat__window').innerText = `Response from ${socket.id} ${message}`;
 });
 
 // Прослушка кнопки
+
 document.getElementById('send__button').onclick = () => {
     const message = document.getElementById('chat__message').value;
+
+    document.getElementById('chat__window').innerText = message;
     socket.send(message);
-};
+}
+
 

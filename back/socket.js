@@ -1,17 +1,16 @@
-import { Server } from 'socket.io';
+import io from './index.js'
 
-export function setupSocket(server) {
-    const io = new Server(server);
-
+export function setupSocket() {
+    
     io.on('connection', (socket) => {
         console.log('A user connected:', socket.id);
 
         // Обработка получения сообщения от клиента
-        socket.on('chat message', (msg) => {
+        socket.on('message', (msg) => {
             console.log('Message from client:', msg);
 
             // Отправка сообщения обратно всем подключенным клиентам
-            io.emit('chat message', msg);
+            io.emit('message', msg);
         });
 
         // Обработка отключения пользователя
@@ -20,5 +19,5 @@ export function setupSocket(server) {
         });
     });
 
-    return io;
+
 }

@@ -1,5 +1,5 @@
 import express from 'express';
-import cors from 'cors';
+import { setupSocket } from './socket.js';
 import connectDB from './dataBase/connect.js';
 import router from './router.js';
 import http from 'http';
@@ -16,18 +16,18 @@ const io = new Server(server, {
 
 const PORT = 3000; 
 
-/*app.use(express.json());
-app.use('/users', router);*/
+app.use(express.json());
+app.use('/users', router);
 
 io.on('connection', (socket) => {
     console.log('A user connected:', socket.id);
 
     // Обработка получения сообщения от клиента
-    socket.on('chat message', (msg) => {
+    socket.on('message', (msg) => {
         console.log('Message from client:', msg);
 
         // Отправка сообщения обратно всем подключенным клиентам
-        io.emit('chat message', msg);
+        io.emit('message', msg);
     });
 
     // Обработка отключения пользователя
@@ -50,3 +50,4 @@ startServer();
 
 
 export default io;
+
