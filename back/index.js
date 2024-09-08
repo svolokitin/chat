@@ -1,5 +1,5 @@
 import express from 'express';
-import cors from 'cors';
+import { setupSocket } from './socket.js';
 import connectDB from './dataBase/connect.js';
 import router from './router.js';
 import http from 'http';
@@ -50,3 +50,4 @@ startServer();
 
 
 export default io;
+

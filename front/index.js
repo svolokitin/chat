@@ -7,11 +7,16 @@ socket.on('message', (message) => {
     const para = document.createElement('p');
     para.innerText = message;
     document.getElementById('chat__window').innerText = document.body.appendChild(para);
+
 });
 
 // Прослушка кнопки
+
 document.getElementById('send__button').onclick = () => {
     const message = document.getElementById('chat__message').value;
+
+    document.getElementById('chat__window').innerText = message;
     socket.send(message);
-};
+}
+
 
