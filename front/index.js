@@ -4,10 +4,11 @@ const socket = io('http://localhost:3000');
 
 // Обработка сообщений
 socket.on('message', (message) => {
-    const para = document.createElement('p');
-    para.innerText = message;
-    document.getElementById('chat__window').innerText = document.body.appendChild(para);
-
+    const chat__window = document.getElementById('chat__window');
+    let div = document.createElement('div');
+    div.className = '#777';
+    div.innerHTML = `<p>${message}</p>`;
+    
 });
 
 // Прослушка кнопки
